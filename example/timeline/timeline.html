@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sample app</title>
+    <link rel="stylesheet" href="timeline.css">
+    <link rel="import" href="packages/polymer/polymer.html">
+    <link rel="import" href="packages/webide/widgets/timeline/wi-timeline.html">
+    <link rel="import" href="packages/webide/widgets/timeline/wi-timeline-item.html">
+  </head>
+  <body>
+    <wi-timeline>
+      <wi-timeline-item label="Object 1"/>
+      <wi-timeline-item label="Object 2"/>
+      <wi-timeline-item label="Object 3"/>
+    </wi-timeline>
+    <script type="application/dart;component=1" src="timeline.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>

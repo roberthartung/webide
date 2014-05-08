@@ -1,0 +1,40 @@
+<polymer-element name="wi-timeline" attributes="objects">
+  <template>
+    <style>
+    :host {
+      border: 1px solid #000;
+      display: block;
+      overflow: hidden;
+    }
+
+    ::content {
+      
+    }
+    
+    #objects-names {
+      background-color: #ccc;
+      float: left;
+      width: 25%;
+      height: 100px;
+    }
+    
+    #objects-frames {
+      background-color: #999;
+      float: right;
+      width: 75%;
+      height: 100px;
+    }
+    </style>
+    
+    <div id="objects-names">
+      <!-- only put names here -->
+    </div>
+    <div id="objects-frames">
+      <!-- add keyframes here -->
+      <content></content>
+    </div>
+    
+    
+  </template>
+  <script type="application/dart;component=1" src="wi-timeline.dart"></script>
+</polymer-element>
