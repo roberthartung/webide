@@ -1,0 +1,43 @@
+<link rel="import" href="packages/webide/widgets/timeline.html">
+
+<polymer-element name="wi-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+      }
+      
+      #holder {
+        height: 20%;
+      }
+      
+      #timeline {
+        height: 50%;
+      }
+    </style>
+    
+    <div id="holder">
+      <content></content>
+    </div>
+    
+    <wi-timeline id="timeline" zoomeable>
+      <template repeat="{{ object in objects }}">
+        <wi-timeline-element label="{{ object.name }}">
+          <template repeat="{{ keyFramePosition in object.keyFrames.keys }}">
+            <wi-keyframe at="{{keyFramePosition}}" style="left: {{ keyFramePosition }}%;">{{ keyFramePosition }}</wi-keyframe>
+          </template>
+        </wi-timeline-element>
+      </template>
+      
+      <wi-timeline-element label="Object 1 (static)">
+        <wi-keyframe at="5"/>
+      </wi-timeline-element>
+    </wi-timeline>
+  </template>
+  <script type="application/dart;component=1" src="wi-app.dart"></script>
+</polymer-element>

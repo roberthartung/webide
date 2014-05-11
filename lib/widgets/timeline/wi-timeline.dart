@@ -10,8 +10,10 @@ import 'dart:collection';
 import 'package:webide/themes/themes.dart';
 
 @CustomTag('wi-timeline')
-class WiTimeline extends PolymerElement with ThemedElement {
+class WiTimeline extends ThemedElement {
   @observable ObservableMap<Object,String> elementsToLabelMap = toObservable(new LinkedHashMap());
+  
+  @observable ObservableList objects;
   
   static const int MAX_FRAME_WIDTH = 100;
   
@@ -24,6 +26,7 @@ class WiTimeline extends PolymerElement with ThemedElement {
   @published String zoom = "1.0";
 
   WiTimeline.created(): super.created() {
+    print(this.toString() + " created");
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true, subtree: true);
   }

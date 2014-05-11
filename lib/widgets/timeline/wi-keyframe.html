@@ -1,6 +1,12 @@
 <polymer-element name="wi-keyframe">
   <template>
-    <content></content>
+    <style>
+      :host {
+        display: block;
+        position: absolute;
+      }
+    </style>
+    <content>{{at}}</content>
   </template>
   <script type="application/dart;component=1" src="wi-keyframe.dart"></script>
 </polymer-element>

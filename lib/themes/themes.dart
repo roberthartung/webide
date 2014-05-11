@@ -1,6 +1,8 @@
 library webide.themes;
 
 import 'package:observe/observe.dart';
+import 'package:polymer/polymer.dart';
+import 'dart:html';
 
 /**
  * Theme interface can be used to define own Themes
@@ -30,8 +32,29 @@ final themeManager = new ThemeManger._();
  * @mixin
  */
 
-abstract class ThemedElement {
+abstract class ThemedElement extends PolymerElement {
   @observable Theme get theme => themeManager.theme;
+  
+  ThemedElement.created() : super.created() {
+    _setupTheme();
+  }
+  
+  void _setupTheme() {
+    print('setupTheme for ${theme.cssPath}/$tagName.css');
+    // 'shadowRoot.' will result in Removing disallowed element <LINK> (:1)
+    // inserting a <link> into template does not work also!
+    //shadowRoot.querySelector('template').appendHtml('<link rel="stylesheet" href="${theme.cssPath}/'+tagName.toLowerCase()+'.css">');
+    
+    // Using a style works
+    // TODO(roberthartung): correct path
+    StyleElement style = new StyleElement();
+   /* :host {
+    background-color: #ccc;
+  }
+  */
+    style.text = "@import \"${theme.cssPath}/"+tagName.toLowerCase()+".css\";";
+    shadowRoot.querySelector('template').append(style);
+  }
 }
 
 /**
@@ -60,7 +83,9 @@ class ThemeManger extends Observable {
    * Private constructor
    */
   
-  ThemeManger._() {
-    
+  ThemeManger._();
+  
+  void setTheme(Theme theme) {
+    this.theme = theme;
   }
 }

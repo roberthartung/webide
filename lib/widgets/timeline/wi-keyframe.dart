@@ -4,6 +4,8 @@ import 'package:polymer/polymer.dart';
 
 @CustomTag('wi-keyframe')
 class WiKeyframe extends PolymerElement {
+  @published int at;
+  
   WiKeyframe.created() : super.created() {
     
   }
