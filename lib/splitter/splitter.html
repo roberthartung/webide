@@ -1,0 +1,30 @@
+<polymer-element name="wi-splitter" attributes="vertical locked" on-mousedown="{{trackStart}}">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        height: 7px;
+        width: 100%;
+        background: #efefef url('packages/webide/splitter/handle_horiz.png') no-repeat center;
+        box-shadow: inset 0 0 2px 1px #ccc;
+        cursor: row-resize;
+      }
+
+      :host(.vertical:host) {
+        width: 7px;
+        height: 100%;
+        background-color: #efefef;
+        background-image: url('packages/webide/splitter/handle.png') ;
+        cursor: column-resize;
+      }
+
+      :hover, .active {
+        background-color: #ddd;
+      }
+    </style>
+  </template>
+  <div>
+  </div>
+
+  <script type="application/dart;component=1" src="splitter.dart"></script>
+</polymer-element>
