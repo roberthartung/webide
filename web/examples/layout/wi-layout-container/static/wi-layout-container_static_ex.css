@@ -1,0 +1,71 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 0px;
+  padding: 0px;
+}
+
+.holder {
+  width: 500px;
+  height: 200px;
+  display:block;
+  border: 1px solid #ccc;
+  background-color: gray;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.holder > * {
+  width: 100%;
+  height: 100%;
+}
+
+#div1 {
+  height: 20px;
+}
+
+#vl_1 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color:  red;
+}
+
+#vl_2 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color: green;
+}
+
+#vl_3 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color: orange;
+}
+
+
+#v2_1 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color:  red;
+}
+
+#v2_2 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color: green;
+}
+
+#v2_3 {
+  /*height: 100%;*/
+  /*flex: 1 1 20px;*/
+  background-color: orange;
+}

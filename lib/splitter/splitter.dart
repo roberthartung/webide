@@ -27,13 +27,13 @@ class WiSplitter extends PolymerElement {
   @published bool vertical = false;
   /// Triggered when [vertical] is externally changed.
   void verticalChanged() {
-    if(vertical == true) {
+    /*if(vertical == true) {
       classes.add('vertical');
     } else if(vertical == false) {
       classes.remove('vertical');
     } else {
       vertical = false;
-    }
+    }*/
   }
   
   @published bool locked = false;
@@ -42,7 +42,6 @@ class WiSplitter extends PolymerElement {
   StreamSubscription<MouseEvent> _trackEndSubscr;
   
   void trackStart(MouseEvent e) {
-    print("here");
     // Make active regardless of [locked], to appear responsive.
     classes.add('active');
 
@@ -57,9 +56,9 @@ class WiSplitter extends PolymerElement {
     // Recheck [locked], in case it's been changed externally in mid-flight.
     if (!locked) {
       DockableSplitterSlideEvent event = new DockableSplitterSlideEvent();
-      event.delta = vertical ? e.movement.y : e.movement.x;
-      event.offsetPos = vertical ? e.offset.y : e.offset.x;
-      event.clientPos = vertical ? e.client.y : e.client.x;
+      event.delta = vertical ? e.movement.x : e.movement.y;
+      event.offsetPos = vertical ? e.offset.x : e.offset.y;
+      event.clientPos = vertical ? e.client.x : e.client.y;
       event.horizontal = vertical;
       event.target = this;
       this.fire("slide", detail: event, toNode: this);
