@@ -9,7 +9,7 @@ class DockableSplitterSlideEvent {
   int delta;
   int offsetPos;
   int clientPos;
-  bool horizontal;
+  bool vertical;
 }
 
 @CustomTag('wi-splitter')
@@ -59,7 +59,7 @@ class WiSplitter extends PolymerElement {
       event.delta = vertical ? e.movement.x : e.movement.y;
       event.offsetPos = vertical ? e.offset.x : e.offset.y;
       event.clientPos = vertical ? e.client.x : e.client.y;
-      event.horizontal = vertical;
+      event.vertical = vertical;
       event.target = this;
       this.fire("slide", detail: event, toNode: this);
     }

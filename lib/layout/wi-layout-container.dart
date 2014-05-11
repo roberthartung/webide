@@ -48,11 +48,11 @@ class WiLayoutContainer extends PolymerElement {
       if (myidx >= 0 && myidx < children.length - 1) {
         WiLayoutContainer nextCont = children.elementAt(myidx + 1);
         
-        print(detail.offsetPos);
+        print(detail.delta);
         num change = detail.delta >= 0? 0.1: - 0.1;
-        weight = weight + change;
+        node.weight = node.weight + change;
 
-        nextCont.weight = weight - change;
+        nextCont.weight = nextCont.weight - change;
       }
     });
     _streams[node] = _strm;
@@ -90,6 +90,8 @@ class WiLayoutContainer extends PolymerElement {
     }
     _splitter.vertical = !par_vertical;
   }
+  
+  WiLayoutContainer _lastChild = null;
 
   @published
   bool vertical = false;
@@ -103,6 +105,16 @@ class WiLayoutContainer extends PolymerElement {
 
   @published
   bool locked = false;
+  
+  /**
+   * Lock implicitly if this container is the only container in the parent container.
+   * This should be called from the parent.
+   */
+  bool get implicitlock => _implicitlock;
+  bool _implicitlock = false;
+  void _setImplicitLock() {
+    
+  }
 
   @published
   num weight = 1;
