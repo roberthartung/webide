@@ -1,0 +1,53 @@
+<polymer-element name="wi-timeline">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #holder {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll; 
+      }
+      
+      #display {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 200px;
+      }
+      
+      #display > * {
+        height: 32px;
+      }
+      
+      #timeline-container {
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        overflow-x: scroll;
+      }
+      
+      ::content {
+      background-color: #f00;
+      }
+    </style>
+    <div id="holder">
+      <div id="display">
+        <template repeat="{{name in objectToTitleMap.values}}">
+          <div>{{name}}</div>
+        </template>
+      </div>
+      <div id="timeline-container">
+        <content></content>
+      </div>
+    </div>
+  </template>
+  <script type="application/dart;component=1" src="wi-timeline.dart"></script>
+</polymer-element>
+
