@@ -1,40 +1,19 @@
-<polymer-element name="wi-timeline" attributes="objects">
+<polymer-element name="wi-timeline">
   <template>
-    <style>
-    :host {
-      border: 1px solid #000;
-      display: block;
-      overflow: hidden;
-    }
-
-    ::content {
-      
-    }
+    <link rel="stylesheet" href="../../css/wi-timeline.css">
+    <!-- <link rel="stylesheet" href="{{ theme.cssPath }}/wi-timeline.css"> -->
+    <!-- {{ theme.cssPath }} -->
     
-    #objects-names {
-      background-color: #ccc;
-      float: left;
-      width: 25%;
-      height: 100px;
-    }
-    
-    #objects-frames {
-      background-color: #999;
-      float: right;
-      width: 75%;
-      height: 100px;
-    }
-    </style>
-    
-    <div id="objects-names">
-      <!-- only put names here -->
+    <div id="holder">
+      <div id="display">
+        <template repeat="{{name in elementsToLabelMap.values}}">
+          <div>{{name}}</div>
+        </template>
+      </div>
+      <div id="timeline-container">
+        <content></content>
+      </div>
     </div>
-    <div id="objects-frames">
-      <!-- add keyframes here -->
-      <content></content>
-    </div>
-    
-    
   </template>
   <script type="application/dart;component=1" src="wi-timeline.dart"></script>
 </polymer-element>
