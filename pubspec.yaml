@@ -6,4 +6,5 @@ authors:
 homepage: https://github.com/webide/webide
 dependencies:
   browser: any
+  observe: any
   polymer: 0.10.0-pre.10
