@@ -8,7 +8,7 @@ class DockableSplitterSlideEvent {
   WiSplitter target;
   int delta;
   int offsetPos;
-  int clientPos;
+  int pagePos;
   bool vertical;
 }
 
@@ -27,13 +27,6 @@ class WiSplitter extends PolymerElement {
   @published bool vertical = false;
   /// Triggered when [vertical] is externally changed.
   void verticalChanged() {
-    /*if(vertical == true) {
-      classes.add('vertical');
-    } else if(vertical == false) {
-      classes.remove('vertical');
-    } else {
-      vertical = false;
-    }*/
   }
   
   @published bool locked = false;
@@ -58,7 +51,7 @@ class WiSplitter extends PolymerElement {
       DockableSplitterSlideEvent event = new DockableSplitterSlideEvent();
       event.delta = vertical ? e.movement.x : e.movement.y;
       event.offsetPos = vertical ? e.offset.x : e.offset.y;
-      event.clientPos = vertical ? e.client.x : e.client.y;
+      event.pagePos = vertical ? e.page.x : e.page.y;
       event.vertical = vertical;
       event.target = this;
       this.fire("slide", detail: event, toNode: this);

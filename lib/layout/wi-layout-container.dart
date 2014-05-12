@@ -19,12 +19,13 @@ class WiLayoutContainer extends PolymerElement {
 
   void ready() {
     _splitter = shadowRoot.querySelector("#splitter");
+    _holder = shadowRoot.querySelector("#holder");
     //TODO: fix this: verticalChanged is not called if vertical is set to false initially
     Polymer.onReady.then((_) {
       if (vertical == false) {
         verticalChanged();
       }
-      for(WiLayoutContainer cont in children) {
+      for (WiLayoutContainer cont in children) {
         _registerNewChildContainer(cont);
       }
     });
@@ -48,11 +49,22 @@ class WiLayoutContainer extends PolymerElement {
       if (myidx >= 0 && myidx < children.length - 1) {
         WiLayoutContainer nextCont = children.elementAt(myidx + 1);
         
-        print(detail.delta);
-        num change = detail.delta >= 0? 0.1: - 0.1;
-        node.weight = node.weight + change;
-
-        nextCont.weight = nextCont.weight - change;
+        num total_weight = node.weight + nextCont.weight;
+        
+        //This works because there are no elements with position = relative between parent's holder and
+        //and its children.
+        if(vertical) {
+          num total_dim = node.offsetHeight + nextCont.offsetHeight;
+          node.weight = ((detail.offsetPos - node.offsetTop)/total_dim) * total_weight;
+          nextCont.weight = ((nextCont.offsetTop + nextCont.offsetHeight - detail.offsetPos)/total_dim) * total_weight;
+          print("");
+          print(node.offsetTop.toString() + " " + detail.offsetPos.toString() + " " + (nextCont.offsetTop + nextCont.offsetHeight).toString());
+        } else {
+          num total_dim = node.offsetWidth + nextCont.offsetWidth;
+          node.weight = ((detail.offsetPos - node.offsetLeft)/total_dim) * total_weight;
+          nextCont.weight = ((nextCont.offsetLeft + nextCont.offsetWidth - detail.offsetPos)/total_dim) * total_weight;
+        }
+        print(node.weight + nextCont.weight);
       }
     });
     _streams[node] = _strm;
@@ -84,13 +96,13 @@ class WiLayoutContainer extends PolymerElement {
    */
   void _setParentOrientation(bool par_vertical) {
     if (par_vertical) {
-      shadowRoot.querySelector('#holder').classes.add("parvert");
+      _holder.classes.add("parvert");
     } else {
-      shadowRoot.querySelector('#holder').classes.remove("parvert");
+      _holder.classes.remove("parvert");
     }
     _splitter.vertical = !par_vertical;
   }
-  
+
   WiLayoutContainer _lastChild = null;
 
   @published
@@ -105,7 +117,7 @@ class WiLayoutContainer extends PolymerElement {
 
   @published
   bool locked = false;
-  
+
   /**
    * Lock implicitly if this container is the only container in the parent container.
    * This should be called from the parent.
@@ -113,7 +125,7 @@ class WiLayoutContainer extends PolymerElement {
   bool get implicitlock => _implicitlock;
   bool _implicitlock = false;
   void _setImplicitLock() {
-    
+
   }
 
   @published
@@ -127,6 +139,7 @@ class WiLayoutContainer extends PolymerElement {
   }
 
   WiSplitter _splitter;
+  DivElement _holder;
 
   Stream<CustomEvent> get onSlide => _splitter.onSlide;
 }
