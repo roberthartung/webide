@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<polymer-element name="optionbox-item-plain1" attributes="label">
+  <template>
+    <style>
+      :host {
+        flex: none;
+        font-size: 24px;
+        color:#fff;
+        display: block;
+        padding: 10px 15px 10px 15px;
+        -webkit-transition: padding .2s linear;
+        -moz-transition: padding .2s linear;
+        -o-transition: padding .2s linear;
+        transition: padding .2s linear;
+
+        font: 16px "Lucida Grande", Tahoma, Verdana, sans-serif;
+
+        display: flex;
+        flex-direction: row;
+        -webkit-flex-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+
+        width: 100%;
+        cursor:default;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      :host:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding-left: 30px;
+      }
+      :host(.item-selected:host) {
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      :host > div.content {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+
+    <div class="content">{{label}}</div>
+  </template>
+
+  <script type="application/dart" src="optionbox_item_plain1.dart"></script>
+</polymer-element>
+
