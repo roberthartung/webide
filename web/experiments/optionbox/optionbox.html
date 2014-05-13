@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<link rel="import" href="optionbox_item.html">
+<link rel="import" href="optionbox_item_plain1.html">
+<polymer-element name="option-box" attributes="multi selected">
+  <template>
+    <style>
+      :host {
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        border: 1px solid rgba(0,0,0,0.2);
+        box-sizing: border-box;
+        background-color: white;
+      }
+      :host > listbox-item {
+        padding: 5px;
+      }
+      :host > div.holder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      ::content > .dragged {
+        disaply: none !important;
+      }
+
+      ::content > .dnd-placeholder {
+        border: 1px dashed #CCC;
+        background: none;
+      }
+    </style>
+    <div class="holder">
+      <content id="items" select="*"></content>
+    </div>
+  </template>
+
+  <script type="application/dart" src="optionbox.dart"></script>
+</polymer-element>
+
