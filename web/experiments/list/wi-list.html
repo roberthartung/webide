@@ -1,0 +1,25 @@
+<link rel="import" href="wi-element.html">
+
+<polymer-element name="wi-list" attriutes="list">
+  <template>
+    <style>
+      :host {
+        display:block;
+      }
+      
+      #holder {
+        background-color: gray;
+      }
+      
+      wi-element + wi-element {
+        border-top: 1px solid #f00;
+      }
+    </style>
+    
+    <div id="holder">
+      <content></content>
+    </div>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-list.dart"></script>
+</polymer-element>

@@ -1,0 +1,20 @@
+<polymer-element name="wi-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+        cursor: pointer;
+        padding: 5px;
+        
+        background-color: #f8f8f8;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #e2e2e2;
+      }
+    </style>
+    
+    {{item.label}}
+    <content></content>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-element.dart"></script>
+</polymer-element>

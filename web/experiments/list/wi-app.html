@@ -1,0 +1,30 @@
+<link rel="import" href="wi-element.html">
+<link rel="import" href="wi-list.html">
+
+<polymer-element name="wi-app">
+  <template>
+    <style>
+      :host {
+        display:block;
+        cursor: pointer;
+      }
+    </style>
+    
+    <wi-list list="{{objects}}">
+      <wi-element>Static #1</wi-element>
+      <wi-element>Static #2</wi-element>
+      <template repeat="{{ obj in objects}}">
+        <wi-element item="{{obj}}"></wi-element>
+      </template>
+      <wi-element>Static #3</wi-element>
+    </wi-list>
+    
+    <template repeat="{{obj in objects}}">
+      <input type="text" value="{{obj.label}}"><br/>
+    </template>
+    
+    <content></content>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-app.dart"></script>
+</polymer-element>
