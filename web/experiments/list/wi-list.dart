@@ -106,7 +106,8 @@ class WiList extends PolymerElement {
   }
   
   _onDragEnd(MouseEvent e) {
-    //print(e);
+    print('dragEnd');
+    _draggedElement = null;
   }
   
   _onDragEnter(MouseEvent e) {
@@ -136,6 +137,7 @@ class WiList extends PolymerElement {
   
   _onDrop(MouseEvent e) {
     e.stopPropagation();
-    //print(e);
+    print('drop');
+    _draggedElement = null;
   }
 }
