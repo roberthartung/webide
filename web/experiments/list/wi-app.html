@@ -10,12 +10,30 @@
       }
     </style>
     
+    <h2>Mixed</h2>
+    
     <wi-list list="{{objects}}">
       <wi-element>Static #1</wi-element>
       <wi-element>Static #2</wi-element>
       <template repeat="{{ obj in objects}}">
         <wi-element item="{{obj}}"></wi-element>
       </template>
+      <wi-element>Static #3</wi-element>
+    </wi-list>
+    
+    <h2>Dynamic</h2>
+    
+    <wi-list list="{{objects2}}">
+      <template repeat="{{ obj in objects2}}">
+        <wi-element item="{{obj}}"></wi-element>
+      </template>
+    </wi-list>
+    
+    <h2>Static</h2>
+    
+    <wi-list>
+      <wi-element>Static #1</wi-element>
+      <wi-element>Static #2</wi-element>
       <wi-element>Static #3</wi-element>
     </wi-list>
     

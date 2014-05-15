@@ -94,14 +94,17 @@ class WiList extends PolymerElement {
     }
   }
   
-  WiSortableElement _draggedElement;
+  static WiSortableElement _draggedElement;
+  
+  static Element _draggedStaticElement;
   
   _onDragStart(MouseEvent e) {
     //e.dataTransfer.effectAllowed = 'move';
-    if((e.target is WiSortableElement) && list.indexOf((e.target as WiSortableElement).item) != -1) {
+    if((e.target is WiSortableElement) && list != null && list.indexOf((e.target as WiSortableElement).item) != -1) {
       _draggedElement = (e.target as WiSortableElement);
     } else {
-      // 
+      print('dragstart on static element');
+      _draggedStaticElement = e.target as Element;
     }
   }
   
@@ -120,15 +123,26 @@ class WiList extends PolymerElement {
   
   _onDragOver(MouseEvent e) {
     e.preventDefault();
-    if((e.target is WiSortableElement) && _draggedElement != null) {
-      int draggedElementIndex = list.indexOf(_draggedElement.item);
-      int dragOverIndex = list.indexOf((e.target as WiSortableElement).item);
-      
-      if(dragOverIndex != -1 && dragOverIndex != draggedElementIndex) {
-        list.removeAt(draggedElementIndex);
-        list.insert(dragOverIndex, _draggedElement.item);
+    if((e.target is WiSortableElement) && (e.target as WiSortableElement).item != null) {
+      if(_draggedElement != null) {
+        int draggedElementIndex = list.indexOf(_draggedElement.item);
+        int dragOverIndex = list.indexOf((e.target as WiSortableElement).item);
+        if(draggedElementIndex == -1) {
+          if(dragOverIndex != -1) {
+            list.insert(dragOverIndex+1, _draggedElement.item);
+          }
+        } else {
+          if(dragOverIndex != -1 && dragOverIndex != draggedElementIndex) {
+            list.removeAt(draggedElementIndex);
+            list.insert(dragOverIndex, _draggedElement.item);
+          }
+        }
+        
       }
-      // print("$draggedElementIndex $dragOverIndex");
+    } else {
+      print('dragover on dynamic element');
+      
+      (e.target as Element).parent.insertBefore(_draggedStaticElement, (e.target as Element).nextElementSibling);
     }
     
     e.dataTransfer.effectAllowed = 'move';

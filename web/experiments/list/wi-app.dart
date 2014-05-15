@@ -6,15 +6,20 @@ class SomeObject extends Observable {
   @observable String label;
   
   SomeObject(this.label);
+  
+  String toString() => label;
 }
 
 int i = 4;
 
 @CustomTag('wi-app')
 class WiApp extends PolymerElement {
-  @observable ObservableList objects = new ObservableList.from([new SomeObject("Object #1"), new SomeObject("Object #2"), new SomeObject("Object #3")]);
+  @observable ObservableList objects = new ObservableList.from([new SomeObject("Mixed #1"), new SomeObject("Mixed #2"), new SomeObject("Mixed #3")]);
+  
+  @observable ObservableList objects2 = new ObservableList.from([new SomeObject("Dynamic #1"), new SomeObject("Dynamic #2"), new SomeObject("Dynamic #3")]);
   
   WiApp.created() : super.created() {
+    
   }
 
   @override
