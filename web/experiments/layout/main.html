@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="import" href="packages/polymer/polymer.html">
+    <link rel="import" href="wi-layout.html">
+    <link rel="import" href="wi-container.html">
+    <link rel="import" href="wi-dock.html">
+    <link rel="import" href="wi-menubar.html">
+    <style>
+      wi-layout {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #ccc;
+      }
+      
+      #menubar {
+        background-color: green;
+        height: 30px;
+      }
+      
+      #dock1 {
+        background-color: red;
+      }
+      
+      #dock2 {
+        background-color: yellow;
+      }
+      
+      #dock3 {
+        background-color: blue;
+      }
+      
+      #dock4 {
+        background-color: purple;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <wi-layout>
+      <wi-container horizontal>
+        <wi-menubar id="menubar"></wi-menubar>
+        <wi-dock id="dock1"></wi-dock>
+        <wi-dock id="dock2"></wi-dock>
+        <wi-container vertical>
+          <wi-dock id="dock3"></wi-dock>
+          <wi-dock id="dock4"></wi-dock>
+        </wi-container>
+      </wi-container>
+    </wi-layout>
+    <script type="application/dart;component=1" src="main.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>

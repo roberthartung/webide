@@ -1,0 +1,22 @@
+<polymer-element name="wi-container">
+  <template>
+    <style>
+      :host {
+        display: -webkit-flex;
+        display: flex;
+        flex-grow: 1;
+      }
+      
+      :host(.vertical) {
+        flex-direction: row;
+      }
+      
+      :host(.horizontal) {
+        flex-direction: column;
+      }
+    </style>
+    <content></content>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-container.dart"></script>
+</polymer-element>
