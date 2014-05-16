@@ -2,7 +2,16 @@
   <template>
     <style>
       :host {
-        flex-grow: 1;
+        flex-grow: {{weight}};
+        display: block;
+      }
+      
+      :host(.is-resizing) {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;     
       }
     </style>
     <content></content>

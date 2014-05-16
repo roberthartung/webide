@@ -44,19 +44,21 @@
     </style>
   </head>
  
-  <body>   
+  <body>
     <wi-layout>
       <wi-container id="container" horizontal resizable>
         <wi-menubar id="menubar">
           <button id="add">Add Dock</button>
           <button id="remove">Remove Dock</button>
         </wi-menubar>
-        <wi-dock id="dock1"></wi-dock>
-        <wi-dock id="dock2"></wi-dock>
-        <wi-container vertical resizable>
-          <wi-dock id="dock3"></wi-dock>
-          <wi-dock id="dock4"></wi-dock>
+        <wi-dock id="dock1" weight="3">dock1</wi-dock>
+        <wi-container id="innercontainer" weight="1" vertical resizable>
+          <wi-dock weight="1" id="dock3"></wi-dock>
+          <wi-dock weight="1" id="dock4"></wi-dock>
         </wi-container>
+        <wi-dock id="dock2" weight="1">dock2</wi-dock>
+        <wi-dock id="dock5" weight="2">dock5</wi-dock>
+        <wi-dock id="dock6" weight="3">dock6</wi-dock>
       </wi-container>
     </wi-layout>
     <script type="application/dart;component=1" src="main.dart"></script>

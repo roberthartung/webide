@@ -19,7 +19,7 @@ class WiSplitter extends PolymerElement {
     if(vertical)
         classes.add('vertical');
     
-    print(this.toString() + " enteredView");
+    assert((horizontal || vertical) && !(horizontal && vertical));
   }
 
   @override

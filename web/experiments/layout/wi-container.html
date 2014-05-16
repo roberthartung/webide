@@ -4,10 +4,19 @@
   <template>
     <style>
       :host {
+        flex-grow: {{weight}};
+        /*display: block;*/
+        box-sizing:border-box;
         display: -webkit-flex;
         display: flex;
-        flex-grow: 1;
+        box-sizing:border-box;
+        flex-wrap: nowrap;
       }
+      /*
+      #holder {
+        
+      }
+      */
       
       :host(.vertical) {
         flex-direction: row;
@@ -16,14 +25,26 @@
       :host(.horizontal) {
         flex-direction: column;
       }
+      
+      :host(.is-resizing) {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;     
+      }
     </style>
+  
     <template repeat="{{ child in observableChildren | enumerate }}">
       <content _select=":nth-child({{child.index+1}})"></content>
       <template if="{{ child.index+1 < observableChildren.length }}">
        <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
       </template>
     </template>
-    
+      <!--
+      <div id="holder">
+    </div>
+    -->
   </template>
 
   <script type="application/dart;component=1" src="wi-container.dart"></script>
