@@ -1,3 +1,5 @@
+<link rel="import" href="wi-splitter.html">
+
 <polymer-element name="wi-container">
   <template>
     <style>
@@ -15,9 +17,9 @@
         flex-direction: column;
       }
     </style>
-    <template repeat="{{ child in children | enumerate }}">
+    <template repeat="{{ child in observableChildren | enumerate }}">
       <content _select=":nth-child({{child.index+1}})"></content>
-      <template if="{{ child.index+1 < children.length }}">
+      <template if="{{ child.index+1 < observableChildren.length }}">
        <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
       </template>
     </template>
