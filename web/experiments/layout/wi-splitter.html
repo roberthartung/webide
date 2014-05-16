@@ -1,0 +1,22 @@
+<polymer-element name="wi-splitter">
+  <template>
+    <style>
+      :host {
+        background-color: #000;
+      }
+      
+      :host(.vertical) {
+        width: 5px;
+        cursor: col-resize;
+      }
+      
+      :host(.horizontal) {
+        height: 5px;
+        cursor: row-resize;
+      }
+    </style>
+    <content></content>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-splitter.dart"></script>
+</polymer-element>

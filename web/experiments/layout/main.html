@@ -10,6 +10,7 @@
     <link rel="import" href="wi-container.html">
     <link rel="import" href="wi-dock.html">
     <link rel="import" href="wi-menubar.html">
+    <link rel="import" href="wi-splitter.html">
     <style>
       wi-layout {
         position: absolute;
@@ -45,11 +46,11 @@
  
   <body>   
     <wi-layout>
-      <wi-container horizontal>
+      <wi-container horizontal resizable>
         <wi-menubar id="menubar"></wi-menubar>
         <wi-dock id="dock1"></wi-dock>
         <wi-dock id="dock2"></wi-dock>
-        <wi-container vertical>
+        <wi-container vertical resizable>
           <wi-dock id="dock3"></wi-dock>
           <wi-dock id="dock4"></wi-dock>
         </wi-container>
