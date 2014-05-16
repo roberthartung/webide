@@ -15,7 +15,13 @@
         flex-direction: column;
       }
     </style>
-    <content></content>
+    <template repeat="{{ child in children | enumerate }}">
+      <content _select=":nth-child({{child.index+1}})"></content>
+      <template if="{{ child.index+1 < children.length }}">
+       <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
+      </template>
+    </template>
+    
   </template>
 
   <script type="application/dart;component=1" src="wi-container.dart"></script>

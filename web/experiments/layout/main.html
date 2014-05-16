@@ -46,8 +46,11 @@
  
   <body>   
     <wi-layout>
-      <wi-container horizontal resizable>
-        <wi-menubar id="menubar"></wi-menubar>
+      <wi-container id="container" horizontal resizable>
+        <wi-menubar id="menubar">
+          <button id="add">Add Dock</button>
+          <button id="remove">Remove Dock</button>
+        </wi-menubar>
         <wi-dock id="dock1"></wi-dock>
         <wi-dock id="dock2"></wi-dock>
         <wi-container vertical resizable>
