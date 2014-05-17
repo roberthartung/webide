@@ -3,7 +3,6 @@ library webide.app;
 import 'package:polymer/polymer.dart';
 import 'package:webide/webide.dart';
 import 'dart:html';
-import 'package:webide/webide.dart';
 
 num i = 0;
 
