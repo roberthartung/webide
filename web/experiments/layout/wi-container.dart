@@ -53,11 +53,25 @@ class _WiSplitterListeners {
      num heightBefore = (e.page.y - offset.y) - (offsetBefore.y);
      num heightAfter = (offsetAfter.y + after.offsetHeight) - (e.page.y - offset.y + splitter.offsetHeight);
      num weightSum = double.parse(before.getComputedStyle().flexGrow) + double.parse(after.getComputedStyle().flexGrow);
-     print('$totalHeight $heightBefore $heightAfter $weightSum');
+     //print('$totalHeight $heightBefore $heightAfter $weightSum');
      double weightBefore = (heightBefore / totalHeight) * weightSum;
      double weightAfter = (heightAfter / totalHeight) * weightSum;
-     before.style.flex = '$weightBefore $weightBefore ${heightBefore}px'; //  1 ${heightBefore}px
-     after.style.flex = '$weightAfter $weightAfter ${heightAfter}px'; //  1 ${heightAfter}px
+     //before.style.flex = '$weightBefore $weightBefore ${heightBefore}px'; //  1 ${heightBefore}px
+     //after.style.flex = '$weightAfter $weightAfter ${heightAfter}px'; //  1 ${heightAfter}px
+     //before.style.flex = '$weightBefore $weightBefore auto'; //  1 ${heightBefore}px
+     //after.style.flex = '$weightAfter $weightAfter auto'; //  1 ${heightAfter}px
+     before.setAttribute('weight', '$weightBefore');
+     after.setAttribute('weight', '$weightAfter');
+     
+     String display = after.style.display;
+     after.style.display = 'none';
+     after.offsetHeight;
+     after.style.display = display;
+     
+     display = before.style.display;
+     before.style.display = 'none';
+     before.offsetHeight;
+     before.style.display = display;
   }
   
   /**
@@ -74,16 +88,32 @@ class _WiSplitterListeners {
     num widthBefore = (e.page.x - offset.x) - (offsetBefore.x);
     num widthAfter = (offsetAfter.x + after.offsetWidth) - (e.page.x - offset.x + splitter.offsetWidth);
     num weightSum = double.parse(before.getComputedStyle().flexGrow) + double.parse(after.getComputedStyle().flexGrow);
-    print('$totalWidth $widthBefore $widthAfter $weightSum');
+    //print('$totalWidth $widthBefore $widthAfter $weightSum');
     double weightBefore = (widthBefore / totalWidth) * weightSum;
     double weightAfter = (widthAfter / totalWidth) * weightSum;
-    before.style.flex = '$weightBefore $weightBefore ${widthBefore}px'; //  1 ${widthBefore}px
-    after.style.flex = '$weightAfter $weightAfter ${widthAfter}px'; //  1 
+    //before.style.flex = '$weightBefore $weightBefore ${widthBefore}px'; //  1 ${widthBefore}px
+    //after.style.flex = '$weightAfter $weightAfter ${widthAfter}px'; //  1
+    //before.attributes['weight'] = '$weightBefore';
+    //after.attributes['weight'] = '$weightAfter';
+    before.setAttribute('weight', '$weightBefore');
+    after.setAttribute('weight', '$weightAfter');
+    //before.style.flex = '$weightBefore $weightBefore auto'; //  1 ${widthBefore}px
+    //after.style.flex = '$weightAfter $weightAfter auto'; //  1
+    
+    String display = after.style.display;
+    after.style.display = 'none';
+    after.offsetHeight;
+    after.style.display = display;
+    
+    display = before.style.display;
+    before.style.display = 'none';
+    before.offsetHeight;
+    before.style.display = display;
   }
 }
-// TODO(roberthartung): Create Weight Mixin
+
 @CustomTag('wi-container')
-class WiContainer extends PolymerElement with Weighted {
+class WiContainer extends Weighted {
   MutationObserver _observer;
   
   MutationObserver _splitterObserver;
@@ -94,27 +124,25 @@ class WiContainer extends PolymerElement with Weighted {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
     
-    _splitterObserver = new MutationObserver((List<MutationRecord> changes, MutationObserver) {
-      changes.forEach((MutationRecord change) {
-        change.addedNodes.forEach((Node e) {
-          if(e is WiSplitter) {
-            splitters[e] = new _WiSplitterListeners(this, e);
-          }
-        });
-        
-        change.removedNodes.forEach((Node e) {
-          if(e is WiSplitter) {
-            splitters.remove(e);
-          }
+    if(resizable) {
+      _splitterObserver = new MutationObserver((List<MutationRecord> changes, MutationObserver) {
+        changes.forEach((MutationRecord change) {
+          change.addedNodes.forEach((Node e) {
+            if(e is WiSplitter) {
+              splitters[e] = new _WiSplitterListeners(this, e);
+            }
+          });
+          
+          change.removedNodes.forEach((Node e) {
+            if(e is WiSplitter) {
+              splitters.remove(e);
+            }
+          });
         });
       });
-    });
-    
-    _splitterObserver.observe(shadowRoot, childList: true);
-  }
-  
-  void setWeight() {
-    style.flexGrow = '$weight';
+      
+      _splitterObserver.observe(shadowRoot, childList: true);
+    }
   }
   
   _onMutation(List<MutationRecord> changes, MutationObserver) {
@@ -140,8 +168,6 @@ class WiContainer extends PolymerElement with Weighted {
     
     if(vertical)
         classes.add('vertical');
-    
-    setWeight();
   }
 
   @override

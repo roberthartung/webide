@@ -1,4 +1,4 @@
-library webide.layout.container;
+library webide.layout.splitter;
 
 import 'package:polymer/polymer.dart';
 

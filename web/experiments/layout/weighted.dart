@@ -2,12 +2,12 @@ library webide.layout.weighted;
 
 import 'package:polymer/polymer.dart';
 
-abstract class Weighted {
-  @published int weight = 1;
+abstract class Weighted extends PolymerElement {
+  @published num weight = 1.0;
   
-  void setWeight();
+  Weighted.created() : super.created();
   
   void weightChanged() {
-    setWeight();
+    // ...
   }
 }
