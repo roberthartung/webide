@@ -1,4 +1,4 @@
-library webide.timeline;
+library webide.widgets.timeline;
 
 // TODO(roberthartung): fix css theme file path
 
