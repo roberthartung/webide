@@ -112,15 +112,15 @@ class _WiSplitterListeners {
   }
 }
 
-@CustomTag('wi-container')
-class WiContainer extends Weighted {
+@CustomTag('wi-layout-container')
+class WiLayoutContainer extends Weighted {
   MutationObserver _observer;
   
   MutationObserver _splitterObserver;
   
   Map<WiSplitter,_WiSplitterListeners> splitters = new Map();
   
-  WiContainer.created() : super.created() {
+  WiLayoutContainer.created() : super.created() {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
     

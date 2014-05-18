@@ -1,6 +1,6 @@
 <link rel="import" href="wi-splitter.html">
 
-<polymer-element name="wi-container">
+<polymer-element name="wi-layout-container">
   <template>
     <style>
       :host {
@@ -32,17 +32,18 @@
     </style>
     
     <template if="{{resizable}}">
-        <template repeat="{{ child in observableChildren | enumerate }}">
+      <template repeat="{{ child in observableChildren | enumerate }}">
         <content _select=":nth-child({{child.index+1}})"></content>
         <template if="{{ child.index+1 < observableChildren.length }}">
-         <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
+          <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
         </template>
-      </template>
+     </template>
     </template>
+    
     <template if="{{!resizable}}">
       <content></content>
     </template>
   </template>
 
-  <script type="application/dart;component=1" src="wi-container.dart"></script>
+  <script type="application/dart;component=1" src="wi-layout-container.dart"></script>
 </polymer-element>
