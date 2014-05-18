@@ -31,10 +31,6 @@ class _WiSplitterListeners {
     
     _onMouseDownSubscription = splitter.onMouseDown.listen((e) {
       offset = e.offset;
-      // offset from mouse to top of splitter
-      
-      //print('resize on ${before.id} and ${after.id}');
-      
       _onMouseMoveSubscription = document.onMouseMove.listen(splitter.vertical ? _resizeVertical : _resizeHorizontal);
       _onMouseUpSubscription = document.onMouseUp.listen((e) {
         _onMouseMoveSubscription.cancel();
@@ -53,13 +49,8 @@ class _WiSplitterListeners {
      num heightBefore = (e.page.y - offset.y) - (offsetBefore.y);
      num heightAfter = (offsetAfter.y + after.offsetHeight) - (e.page.y - offset.y + splitter.offsetHeight);
      num weightSum = double.parse(before.getComputedStyle().flexGrow) + double.parse(after.getComputedStyle().flexGrow);
-     //print('$totalHeight $heightBefore $heightAfter $weightSum');
      double weightBefore = (heightBefore / totalHeight) * weightSum;
      double weightAfter = (heightAfter / totalHeight) * weightSum;
-     //before.style.flex = '$weightBefore $weightBefore ${heightBefore}px'; //  1 ${heightBefore}px
-     //after.style.flex = '$weightAfter $weightAfter ${heightAfter}px'; //  1 ${heightAfter}px
-     //before.style.flex = '$weightBefore $weightBefore auto'; //  1 ${heightBefore}px
-     //after.style.flex = '$weightAfter $weightAfter auto'; //  1 ${heightAfter}px
      before.setAttribute('weight', '$weightBefore');
      after.setAttribute('weight', '$weightAfter');
      
@@ -88,18 +79,11 @@ class _WiSplitterListeners {
     num widthBefore = (e.page.x - offset.x) - (offsetBefore.x);
     num widthAfter = (offsetAfter.x + after.offsetWidth) - (e.page.x - offset.x + splitter.offsetWidth);
     num weightSum = double.parse(before.getComputedStyle().flexGrow) + double.parse(after.getComputedStyle().flexGrow);
-    //print('$totalWidth $widthBefore $widthAfter $weightSum');
     double weightBefore = (widthBefore / totalWidth) * weightSum;
     double weightAfter = (widthAfter / totalWidth) * weightSum;
-    //before.style.flex = '$weightBefore $weightBefore ${widthBefore}px'; //  1 ${widthBefore}px
-    //after.style.flex = '$weightAfter $weightAfter ${widthAfter}px'; //  1
-    //before.attributes['weight'] = '$weightBefore';
-    //after.attributes['weight'] = '$weightAfter';
     before.setAttribute('weight', '$weightBefore');
     after.setAttribute('weight', '$weightAfter');
-    //before.style.flex = '$weightBefore $weightBefore auto'; //  1 ${widthBefore}px
-    //after.style.flex = '$weightAfter $weightAfter auto'; //  1
-    
+
     String display = after.style.display;
     after.style.display = 'none';
     after.offsetHeight;
@@ -124,8 +108,11 @@ class WiLayoutContainer extends Weighted {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
     
+    // TODO(roberthartung): Find out why firefox and chrome require experimental-web-platform-featured to be enabled
     if(resizable) {
       _splitterObserver = new MutationObserver((List<MutationRecord> changes, MutationObserver) {
+        print('splitter mutation');
+        
         changes.forEach((MutationRecord change) {
           change.addedNodes.forEach((Node e) {
             if(e is WiSplitter) {
@@ -146,7 +133,9 @@ class WiLayoutContainer extends Weighted {
   }
   
   _onMutation(List<MutationRecord> changes, MutationObserver) {
-    notifyPropertyChange(#observableChildren, null, children);
+    changes.forEach((MutationRecord change) {
+      notifyPropertyChange(#observableChildren, change.oldValue, children);
+    });
     deliverChanges();
   }
   
@@ -160,8 +149,6 @@ class WiLayoutContainer extends Weighted {
   
   void enteredView() {
     super.enteredView();
-    
-    print(this.toString() + " enteredView");
     
     if(horizontal) 
         classes.add('horizontal');

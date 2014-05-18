@@ -9,7 +9,6 @@ class WiDock extends Weighted {
   
   void enteredView() {
     super.enteredView();
-    print(this.toString() + " enteredView");
   }
 
   @override

@@ -8,8 +8,6 @@ class WiLayout extends PolymerElement {
   
   void enteredView() {
     super.enteredView();
-    
-    print(this.toString() + " enteredView");
   }
 
   @override
