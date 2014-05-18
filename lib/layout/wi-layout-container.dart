@@ -4,7 +4,7 @@ import 'package:polymer/polymer.dart';
 import 'wi-splitter.dart';
 import 'dart:html';
 import 'dart:async';
-import 'weighted.dart';
+import 'weighted_element.dart';
 
 class _WiSplitterListeners {
   StreamSubscription<MouseEvent> _onMouseDownSubscription;
@@ -97,7 +97,7 @@ class _WiSplitterListeners {
 }
 
 @CustomTag('wi-layout-container')
-class WiLayoutContainer extends Weighted {
+class WiLayoutContainer extends WeightedElement {
   MutationObserver _observer;
   
   MutationObserver _splitterObserver;

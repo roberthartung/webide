@@ -1,10 +1,10 @@
 library webide.layout.dock;
 
 import 'package:polymer/polymer.dart';
-import 'weighted.dart';
+import 'weighted_element.dart';
 
 @CustomTag('wi-dock')
-class WiDock extends Weighted {
+class WiDock extends WeightedElement {
   WiDock.created() : super.created();
   
   void enteredView() {
