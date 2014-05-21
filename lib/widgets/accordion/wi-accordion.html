@@ -1,0 +1,23 @@
+<polymer-element name="wi-accordion">
+  <template>
+    <style>
+      :host {
+        box-sizing:border-box;
+        display: -webkit-flex;
+        display: flex;
+        box-sizing:border-box;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+    </style>
+    <ul>
+      <template repeat="{{ item in items }}">
+        <li>{{ item.label }}</li>
+      </template>
+    </ul>
+    
+    <content></content>
+  </template>
+
+  <script type="application/dart;component=1" src="wi-accordion.dart"></script>
+</polymer-element>
