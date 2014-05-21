@@ -1,4 +1,8 @@
-<polymer-element name="wi-dock">
+<!-- Include Widgets -->
+<link rel="import" href="../wigets/tabs.html">
+<link rel="import" href="../widgets/accordion.html">
+
+<polymer-element name="wi-dock" attributes="accordion tabbed">
   <template>
     <style>
       :host {
@@ -14,8 +18,41 @@
         -o-user-select: none;
         user-select: none;     
       }
+      
+      :host(.accordion) {
+        box-sizing:border-box;
+        display: -webkit-flex;
+        display: flex;
+        box-sizing:border-box;
+        flex-direction: column;
+      }
+      
+      :host(.accordion) ::content * {
+        flex-grow: 1;
+      }
+      
+      :host(.tabbed) ::content {
+        
+      }
     </style>
-    <content></content>
+    <template if="{{ accordion }}">
+      <wi-accordion>
+        <template repeat="{{ child in observableChildren | enumerate }}">
+          <wi-accordion-item label="{{ child.value.label }}">
+            <content _select=":nth-child({{child.index+1}})"></content>
+          </wi-accordion-item>
+        </template>
+      </wi-accordion>
+    </template>
+    <template if="{{ tabbed }}">
+      <wi-tabs>
+        <template repeat="{{ child in observableChildren | enumerate }}">
+          <wi-tabs-item label="{{ child.value.label }}">
+            <content _select=":nth-child({{child.index+1}})"></content>
+          </wi-tabs-item>
+        </template>
+      </wi-tabs>
+    </template>
   </template>
 
   <script type="application/dart;component=1" src="wi-dock.dart"></script>

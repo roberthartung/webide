@@ -7,12 +7,7 @@
     <title>main</title>
     
     <link rel="import" href="packages/polymer/polymer.html">
-    
-    <link rel="import" href="packages/webide/layout/wi-layout.html">
-    <link rel="import" href="packages/webide/layout/wi-layout-container.html">
-    <link rel="import" href="packages/webide/layout/wi-dock.html">
-    <link rel="import" href="packages/webide/layout/wi-menubar.html">
-    <link rel="import" href="packages/webide/layout/wi-splitter.html">
+    <link rel="import" href="packages/webide/webide.html">
     
     <style>
       wi-layout {
@@ -64,12 +59,22 @@
         <wi-layout-container resizable vertical>
           <wi-layout-container weight="4" horizontal resizable>
             <wi-layout-container weight="4" vertical resizable>
-                <wi-dock id="dock3" weight="1">Browser</wi-dock>
-                <wi-dock id="dock4" weight="4">Workspace</wi-dock>
+                <wi-dock id="dock3" weight="1" tabbed>
+                  <wi-panel name="Browser"><ul><li>File List comes here...</li></ul></wi-panel>
+                </wi-dock>
+                <wi-dock id="dock4" weight="4" tabbed>
+                  <wi-panel label="Properties 1">1</wi-panel>
+                  <wi-panel label="Properties 2">2</wi-panel>
+                  <wi-panel label="Properties 3">3</wi-panel>
+                </wi-dock>
             </wi-layout-container>
-            <wi-dock weight="1" id="dock2">Timeline</wi-dock>
+            <wi-dock weight="1" id="dock2" tabbed>Timeline</wi-dock>
           </wi-layout-container> 
-          <wi-dock id="dock1" weight="1">Properties</wi-dock>
+          <wi-dock id="dock1" weight="1" accordion>
+            <wi-panel label="Properties 1">1</wi-panel>
+            <wi-panel label="Properties 2">2</wi-panel>
+            <wi-panel label="Properties 3">3</wi-panel>
+          </wi-dock>
         </wi-layout-container>
       </wi-layout-container>
     </wi-layout>
