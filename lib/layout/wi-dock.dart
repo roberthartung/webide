@@ -11,8 +11,6 @@ class WiDock extends WeightedElement {
   
   List<WiPanel> _children = new ObservableList.from([]);
   
-  // @observable List<WiPanel> get observableChildren => _children;
-  
   @observable Iterable<Element> get observableChildren => children.where((e) => (e is WiPanel));
   
   @published bool tabbed = false;
@@ -22,34 +20,10 @@ class WiDock extends WeightedElement {
   WiDock.created() : super.created() {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
-    /*
-    Polymer.onReady.then((_) {
-      children.forEach((e) {
-        if(e is WiPanel) {
-          _children.add(e as WiPanel);
-        }
-      });
-      notifyPropertyChange(#observableChildren, null, _children);
-      deliverChanges();
-    });
-    */
   }
   
   _onMutation(List<MutationRecord> changes, MutationObserver) {
     changes.forEach((MutationRecord change) {
-      /*
-      change.addedNodes.forEach((e) {
-        if(e is WiPanel) {
-          _children.add(e as WiPanel);
-        }
-      });
-      
-      change.removedNodes.forEach((e) {
-        if(e is WiPanel) {
-          _children.remove(e);
-        }
-      });
-      */
       notifyPropertyChange(#observableChildren, change.oldValue, children);
     });
     deliverChanges();
@@ -58,6 +32,7 @@ class WiDock extends WeightedElement {
   void enteredView() {
     super.enteredView();
     assert((tabbed || accordion) && !(tabbed && accordion));
+    
     if(accordion)
       classes.add('accordion');
     

@@ -5,9 +5,46 @@
         display: -webkit-flex;
         display: flex;
         flex-grow: 1;
+        flex-direction: column;
+      }
+      
+      :host ::content wi-tabs-item {
+        flex-grow: 1;
+      }
+      
+      #tabs {
+        list-style-type: none;
+        list-style-image: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        height: 20px;
+        flex-grow: 0;
+      }
+      
+      #tabs li {
+        padding: 0;
+        margin: 0;
+        float: left;
+      }
+      
+      #tabs li a {
+        padding: 5px;
+        text-decoration: none;
+      }
+      
+      #tabs li.active a {
+        color: #000;
+        background-color: #fff;
       }
     </style>
-    <content></content>
+    <ul id="tabs">
+      <template repeat="{{ item in items }}">
+        <li class="{{ { 'active' : item.visible } | classFilter }}"><a href="#" on-click="{{ @item.setVisible }}">{{ item.label }}</a></li>
+      </template>
+    </ul>
+    
+    <content id="content"></content>
   </template>
 
   <script type="application/dart;component=1" src="wi-tabs.dart"></script>

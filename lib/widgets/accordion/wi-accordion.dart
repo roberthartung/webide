@@ -11,6 +11,8 @@ class WiAccordion extends PolymerElement {
   
   @observable Iterable get items => children.where((e) => e is WiAccordionItem);
   
+  @observable int get skipItems => (children.length > 0 && children.first is TemplateElement) ? 1 : 0; 
+  
   WiAccordion.created() : super.created() {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
@@ -18,13 +20,10 @@ class WiAccordion extends PolymerElement {
   
   void _onMutation(List<MutationRecord> changes, MutationObserver) {
     changes.forEach((MutationRecord change) {
-      notifyPropertyChange(#observableChildren, change.oldValue, children);
+      notifyPropertyChange(#items, change.oldValue, children);
     });
+    notifyPropertyChange(#skipItems, -1, skipItems);
     deliverChanges();
-  }
-  
-  void _checkAddedNodes() {
-    
   }
   
   void enteredView() {
@@ -34,5 +33,16 @@ class WiAccordion extends PolymerElement {
   @override
   void ready() {
     super.ready();
+  }
+  
+  Map classFilter(Map m) {
+    Map _filtered = new Map();
+    
+    m.forEach((k,v) {
+      if(v)
+        _filtered[k] = v;
+    });
+    
+    return _filtered;
   }
 }

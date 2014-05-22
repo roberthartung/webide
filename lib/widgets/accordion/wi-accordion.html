@@ -1,3 +1,5 @@
+<link rel="import" href="wi-accordion-item.html">
+
 <polymer-element name="wi-accordion">
   <template>
     <style>
@@ -9,14 +11,24 @@
         flex-direction: column;
         flex-grow: 1;
       }
+      
+      .label {
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+      
+      .label a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 5px;
+        background-color: #333;
+      }
     </style>
-    <ul>
-      <template repeat="{{ item in items }}">
-        <li>{{ item.label }}</li>
-      </template>
-    </ul>
-    
-    <content></content>
+    <template repeat="{{ item in items | enumerate }}">
+      <div class="label{{ { ' active' : item.value.visible } | classFilter }}"><a href="#" on-click="{{ @item.value.setVisible }}">{{ item.value.label }}</a></div>
+      <content _select="wi-accordion-item:nth-child({{item.index+1+skipItems}})"></content>
+    </template>
   </template>
 
   <script type="application/dart;component=1" src="wi-accordion.dart"></script>

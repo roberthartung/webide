@@ -1,5 +1,5 @@
 <!-- Include Widgets -->
-<link rel="import" href="../wigets/tabs.html">
+<link rel="import" href="../widgets/tabs.html">
 <link rel="import" href="../widgets/accordion.html">
 
 <polymer-element name="wi-dock" attributes="accordion tabbed">
@@ -8,7 +8,8 @@
       :host {
         flex-grow: {{weight}};
         flex-shrink: 0;
-        display: block;
+        display: -webkit-flex;
+        display: flex;
       }
       
       :host(.is-resizing) {
@@ -26,10 +27,11 @@
         box-sizing:border-box;
         flex-direction: column;
       }
-      
+      /*
       :host(.accordion) ::content * {
         flex-grow: 1;
       }
+      */
       
       :host(.tabbed) ::content {
         
@@ -44,9 +46,10 @@
         </template>
       </wi-accordion>
     </template>
+    
     <template if="{{ tabbed }}">
       <wi-tabs>
-        <template repeat="{{ child in observableChildren | enumerate }}">
+        <template bind repeat="{{ child in observableChildren | enumerate }}">
           <wi-tabs-item label="{{ child.value.label }}">
             <content _select=":nth-child({{child.index+1}})"></content>
           </wi-tabs-item>

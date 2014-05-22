@@ -6,7 +6,9 @@ import 'package:polymer/polymer.dart';
 class WiPanel extends PolymerElement {
   @published String label = "";
   
-  WiPanel.created() : super.created();
+  WiPanel.created() : super.created() {
+    print('$this created');
+  }
   
   void enteredView() {
     super.enteredView();
