@@ -4,9 +4,8 @@
   <template>
     <style>
       :host {
-        flex-grow: {{weight}};
+        /*flex-grow: {{weight}};*/
         flex-shrink: 0;
-        /*display: block;*/
         box-sizing:border-box;
         display: -webkit-flex;
         display: flex;
@@ -33,7 +32,8 @@
     
     <template if="{{resizable}}">
       <template repeat="{{ child in observableChildren | enumerate }}">
-        <content _select=":nth-child({{child.index+1}})"></content>
+      <!-- :nth-child({{child.index+1}}) -->
+        <content _select=".nth-child-{{child.index+1}}"></content>
         <template if="{{ child.index+1 < observableChildren.length }}">
           <wi-splitter _horizontal="{{horizontal}}" _vertical="{{vertical}}"></wi-splitter>
         </template>

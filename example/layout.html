@@ -48,19 +48,31 @@
   </head>
  
   <body>
+    <!--
     <wi-layout>
       <wi-layout-container id="container" horizontal>
-        <!-- Menu -->
         <wi-menubar id="menubar">
           <button id="add">Add Dock</button>
           <button id="remove">Remove Dock</button>
         </wi-menubar>
-        <!-- Left / Right split -->
+        <wi-dock id="dock3" weight="1" tabbed>
+          <wi-panel label="Browser"><ul><li>File List here...</li></ul></wi-panel>
+        </wi-dock>
+      </wi-layout-container>
+    </wi-layout>
+    -->
+    
+    <wi-layout>
+      <wi-layout-container id="container" horizontal>
+        <wi-menubar id="menubar">
+          <button id="add">Add Dock</button>
+          <button id="remove">Remove Dock</button>
+        </wi-menubar>
         <wi-layout-container resizable vertical>
           <wi-layout-container weight="4" horizontal resizable>
             <wi-layout-container weight="4" vertical resizable>
                 <wi-dock id="dock3" weight="1" tabbed>
-                  <!--<wi-panel label="Browser"><ul><li>File List here...</li></ul></wi-panel>-->
+                  <wi-panel label="Browser"><ul><li>File List here...</li></ul></wi-panel>
                 </wi-dock>
                 <wi-dock id="dock4" weight="4" tabbed>
                   <wi-panel label="Tab 1">1</wi-panel>
@@ -78,6 +90,7 @@
         </wi-layout-container>
       </wi-layout-container>
     </wi-layout>
+    
     
       <!--
     <wi-layout>
