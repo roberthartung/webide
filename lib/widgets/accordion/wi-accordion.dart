@@ -2,11 +2,11 @@ library webide.widgets.accordion;
 
 import 'package:polymer/polymer.dart';
 import 'dart:html';
-
+import 'package:webide/nth-child-selector.dart';
 import 'wi-accordion-item.dart';
 
 @CustomTag('wi-accordion')
-class WiAccordion extends PolymerElement {
+class WiAccordion extends PolymerElement with NthChildSelector {
   MutationObserver _observer;
   
   @observable Iterable get items => children.where((e) => e is WiAccordionItem);
@@ -14,6 +14,7 @@ class WiAccordion extends PolymerElement {
   @observable int get skipItems => (children.length > 0 && children.first is TemplateElement) ? 1 : 0; 
   
   WiAccordion.created() : super.created() {
+    addClasses(children);
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
   }
@@ -23,6 +24,8 @@ class WiAccordion extends PolymerElement {
       notifyPropertyChange(#items, change.oldValue, children);
     });
     notifyPropertyChange(#skipItems, -1, skipItems);
+    removeClasses(children);
+    addClasses(children);
     deliverChanges();
   }
   

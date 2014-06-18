@@ -27,7 +27,7 @@
     </style>
     <template repeat="{{ item in items | enumerate }}">
       <div class="label{{ { ' active' : item.value.visible } | classFilter }}"><a href="#" on-click="{{ @item.value.setVisible }}">{{ item.value.label }}</a></div>
-      <content _select="wi-accordion-item:nth-child({{item.index+1+skipItems}})"></content>
+      <content _select=".nth-child-{{item.index+1}}"></content>
     </template>
   </template>
 

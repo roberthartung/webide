@@ -41,7 +41,7 @@
       <wi-accordion>
         <template repeat="{{ child in observableChildren | enumerate }}">
           <wi-accordion-item label="{{ child.value.label }}">
-            <content _select=":nth-child({{child.index+1}})"></content>
+            <content _select=".nth-child-{{child.index+1}}"></content>
           </wi-accordion-item>
         </template>
       </wi-accordion>
@@ -51,7 +51,7 @@
       <wi-tabs>
         <template bind repeat="{{ child in observableChildren | enumerate }}">
           <wi-tabs-item label="{{ child.value.label }}">
-            <content _select=":nth-child({{child.index+1}})"></content>
+            <content _select=".nth-child-{{child.index+1}}"></content>
           </wi-tabs-item>
         </template>
       </wi-tabs>

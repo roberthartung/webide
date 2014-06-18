@@ -62,11 +62,14 @@
     </wi-layout>
     -->
     
+    
     <wi-layout>
       <wi-layout-container id="container" horizontal>
         <wi-menubar id="menubar">
           <button id="add">Add Dock</button>
           <button id="remove">Remove Dock</button>
+          <button id="add-panel-tabs">Add Panel to Tabs</button>
+          <button id="add-panel-accordion">Add Panel to Accordion</button>
         </wi-menubar>
         <wi-layout-container resizable vertical>
           <wi-layout-container weight="4" horizontal resizable>
@@ -91,7 +94,6 @@
       </wi-layout-container>
     </wi-layout>
     
-    
       <!--
     <wi-layout>
       <wi-container id="container" horizontal resizable>
@@ -99,17 +101,20 @@
           <button id="add">Add Dock</button>
           <button id="remove">Remove Dock</button>
         </wi-menubar>
-        <wi-dock id="dock1" weight="3">dock1</wi-dock>
+        <wi-dock id="dock1" weight="3" tabbed>dock1</wi-dock>
         <wi-container id="innercontainer" weight="1" vertical resizable>
-          <wi-dock weight="1" id="dock3"></wi-dock>
-          <wi-dock weight="1" id="dock4"></wi-dock>
+          <wi-dock weight="1" id="dock3" tabbed></wi-dock>
+          <wi-dock weight="1" id="dock4" tabbed></wi-dock>
         </wi-container>
-        <wi-dock id="dock2" weight="1">dock2</wi-dock>
-        <wi-dock id="dock5" weight="2">dock5</wi-dock>
-        <wi-dock id="dock6" weight="3">dock6</wi-dock>
+        <wi-dock id="dock2" weight="1" tabbed>dock2</wi-dock>
+        <wi-dock id="dock5" weight="2" tabbed>dock5</wi-dock>
+        <wi-dock id="dock6" weight="3" tabbed>dock6</wi-dock>
       </wi-container>
     </wi-layout>
- 
+    -->
+    
+    
+ <!--
     <wi-layout>
       <wi-container id="container" vertical resizable>
         <wi-dock id="dock1" weight="3">dock1</wi-dock>

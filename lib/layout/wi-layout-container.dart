@@ -5,6 +5,7 @@ import 'wi-splitter.dart';
 import 'dart:html';
 import 'dart:async';
 import 'weighted_element.dart';
+import 'package:webide/nth-child-selector.dart';
 
 class _WiSplitterListeners {
   StreamSubscription<MouseEvent> _onMouseDownSubscription;
@@ -97,7 +98,7 @@ class _WiSplitterListeners {
 }
 
 @CustomTag('wi-layout-container')
-class WiLayoutContainer extends WeightedElement {
+class WiLayoutContainer extends WeightedElement with NthChildSelector {
   MutationObserver _observer;
   
   MutationObserver _splitterObserver;
@@ -105,11 +106,7 @@ class WiLayoutContainer extends WeightedElement {
   Map<WiSplitter,_WiSplitterListeners> splitters = new Map();
   
   WiLayoutContainer.created() : super.created() {
-    int i = 1;
-    children.forEach((Element e) {
-      e.classes.add('nth-child-$i');
-      i++;
-    });
+    addClasses(children);
     
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
@@ -142,17 +139,8 @@ class WiLayoutContainer extends WeightedElement {
     changes.forEach((MutationRecord change) {
       notifyPropertyChange(#observableChildren, change.oldValue, children);
     });
-    children.forEach((Element e) {
-      Iterator<String> it = e.classes.where((String c) => c.startsWith('nth-child-')).iterator;
-      while(it.moveNext()) {
-        e.classes.remove(it.current);
-      }
-    });
-    int i = 1;
-    children.forEach((Element e) {
-      e.classes.add('nth-child-$i');
-      i++;
-    });
+    removeClasses(children);
+    addClasses(children);
     deliverChanges();
   }
   

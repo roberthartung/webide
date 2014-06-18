@@ -4,9 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'weighted_element.dart';
 import 'dart:html';
 import '../modals/wi-panel.dart';
+import 'package:webide/nth-child-selector.dart';
 
 @CustomTag('wi-dock')
-class WiDock extends WeightedElement {
+class WiDock extends WeightedElement with NthChildSelector {
   MutationObserver _observer;
   
   List<WiPanel> _children = new ObservableList.from([]);
@@ -20,12 +21,15 @@ class WiDock extends WeightedElement {
   WiDock.created() : super.created() {
     _observer = new MutationObserver(_onMutation);
     _observer.observe(this, childList: true);
+    addClasses(children);
   }
   
   _onMutation(List<MutationRecord> changes, MutationObserver) {
     changes.forEach((MutationRecord change) {
       notifyPropertyChange(#observableChildren, change.oldValue, children);
     });
+    removeClasses(children);
+    addClasses(children);
     deliverChanges();
   }
   
