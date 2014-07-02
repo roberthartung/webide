@@ -1,7 +1,6 @@
 library webide.widgets.tabs.item;
 
 import 'package:polymer/polymer.dart';
-import 'dart:html';
 
 @CustomTag('wi-tabs-item')
 class WiTabsItem extends PolymerElement {
@@ -24,10 +23,11 @@ class WiTabsItem extends PolymerElement {
     super.ready();
   }
   
-  void setVisible(MouseEvent a, b, c) {
-    a.preventDefault();
-    visible = !visible;
-    classes.toggle('hidden');
-    classes.toggle('visible');
+  void setVisible(bool newVisible) {
+    if(visible != newVisible) {
+      visible = newVisible;
+      classes.toggle('hidden');
+      classes.toggle('visible');
+    }
   }
 }

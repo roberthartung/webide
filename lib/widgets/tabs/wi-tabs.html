@@ -40,7 +40,7 @@
     </style>
     <ul id="tabs">
       <template repeat="{{ item in items }}">
-        <li class="{{ { 'active' : item.visible } | classFilter }}"><a href="#" on-click="{{ @item.setVisible }}">{{ item.label }}</a></li>
+        <li class="{{ { 'active' : item.visible } | classFilter }}"><a href="#" on-click="{{ setVisible }}">{{ item.label }}</a></li>
       </template>
     </ul>
     
